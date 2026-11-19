@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="id"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Hasil Perhitungan — CarbonSteps</title><link rel="stylesheet" href="../assets/css/styles.css"></head>
+<body><div class="app-shell">
+  <aside class="sidebar">
+    <a class="brand" href="../index.html"><div class="brand-mark">◈</div><div class="brand-name-wrap"><div class="brand-name">CarbonSteps</div><div class="brand-sub">STUDENT PORTAL</div></div></a>
+    <div class="campus-status"><span>● STATUS AKUN</span><span class="status-pill">Aktif</span></div>
+    <nav class="nav">
+      <a class="nav-link" href="dashboard.html" data-placeholder-link><span class="nav-icon">▦</span><span>Dashboard</span></a>
+      <a class="nav-link" href="profile.html" data-placeholder-link><span class="nav-icon">◉</span><span>Profile</span></a>
+      <a class="nav-link" href="kalkulator-transportasi.html" data-placeholder-link><span class="nav-icon">▤</span><span>Kalkulator Transportasi</span></a>
+      <a class="nav-link" href="kalkulator-listrik.html" data-placeholder-link><span class="nav-icon">ϟ</span><span>Kalkulator Listrik</span></a>
+      <a class="nav-link active" href="riwayat.html"><span class="nav-icon">◴</span><span>Hasil &amp; Riwayat</span></a>
+      <a class="nav-link" href="rekomendasi.html"><span class="nav-icon">♧</span><span>Rekomendasi</span></a>
+    </nav>
+    <div class="sidebar-foot"><div class="low-energy"><strong>♧ Low Energy Design</strong>Antarmuka sederhana dan pemuatan data sesuai kebutuhan.</div></div>
+  </aside>
+  <main class="main">
+    <header class="topbar"><div class="crumb">▧ Laporan Emisi <span>›</span> <b>Hasil Perhitungan</b></div><div class="top-actions"><span class="data-badge">◉ Data aktivitas pribadi</span><div class="user-chip"><div class="user-meta"><b id="currentUserName">Mahasiswa</b><span>Mahasiswa</span></div><div class="user-avatar" id="currentUserAvatar">M</div></div><button class="icon-btn" data-logout title="Keluar">↪</button></div></header>
+    <section class="page">
+      <div class="page-heading"><div><div class="eyebrow">Laporan emisi · Estimasi aktivitas</div><h1 class="page-title">Hasil Perhitungan</h1><p class="page-subtitle">Lihat ringkasan dan rincian estimasi jejak karbon dari aktivitas transportasi dan penggunaan listrik perangkat elektronik.</p></div><div class="heading-side"><div class="period-chip">▦ Periode: <b id="calculationPeriod">—</b></div><div class="notice-chip">ⓘ Estimasi berdasarkan data aktivitas, bukan pengukuran langsung</div></div></div>
+      <div id="pageAlert" class="alert" hidden></div>
+      <div id="emptyState" class="card empty-state" hidden><div class="empty-icon">▧</div><h2>Belum ada hasil perhitungan</h2><p>Setelah perhitungan transportasi dan/atau listrik disimpan, hasilnya akan tampil di halaman ini.</p><div class="toolbar" style="justify-content:center"><a class="btn btn-secondary" href="kalkulator-transportasi.html" data-placeholder-link>Kalkulator Transportasi</a><a class="btn btn-primary" href="kalkulator-listrik.html" data-placeholder-link>Kalkulator Listrik</a></div></div>
+      <div id="resultContent" hidden>
+        <div class="summary-grid">
+          <article class="card summary-card"><div class="summary-label"><span class="dot green"></span>Total Estimasi Emisi <span class="tag">Perhitungan tersimpan</span></div><div class="metric" id="totalEmission">—</div><div class="metric-note" id="resultDate">Tanggal perhitungan: —</div></article>
+          <article class="card summary-card"><div class="summary-label"><span class="dot blue"></span>Emisi Transportasi</div><div class="metric blue" id="transportEmission">—</div><div class="metric-note"><span id="transportPercentage">—</span> dari total estimasi emisi</div></article>
+          <article class="card summary-card"><div class="summary-label"><span class="dot green"></span>Emisi Penggunaan Listrik</div><div class="metric green" id="electricityEmission">—</div><div class="metric-note"><span id="electricityPercentage">—</span> dari total estimasi emisi</div></article>
+        </div>
+        <div class="split-layout">
+          <div>
+            <section class="card activity-card"><div class="activity-heading"><span>▣ Rincian Emisi Transportasi</span><span class="activity-total" id="transportSectionTotal">—</span></div><div id="transportDetails" class="activity-list"></div></section>
+            <section class="card activity-card"><div class="activity-heading"><span>⌂ Rincian Emisi Penggunaan Listrik</span><span class="activity-total" id="electricitySectionTotal">—</span></div><div id="electricityDetails" class="activity-list"></div></section>
+          </div>
+          <aside class="grid">
+            <section class="card chart-card"><div class="eyebrow">Distribusi komposisi</div><h2 class="section-title">Komposisi Emisi Berdasarkan Kategori Aktivitas</h2><p class="metric-note">Perbandingan estimasi emisi transportasi dan listrik.</p><div class="chart-box"><canvas id="emissionChart" aria-label="Diagram komposisi emisi"></canvas></div><div class="chart-legend"><div class="legend-item"><span class="legend-dot" style="background:#82cce5"></span><span>Transportasi</span><b id="legendTransport">—</b></div><div class="legend-item"><span class="legend-dot" style="background:#9bd59c"></span><span>Penggunaan listrik</span><b id="legendElectricity">—</b></div></div></section>
+            <section class="card"><div class="eyebrow">Analisis sederhana</div><h2 class="section-title">Kategori Emisi Terbesar</h2><div id="dominantSummary" class="panel-note">Memuat kategori emisi...</div><a id="recommendationLink" class="btn btn-primary btn-block" href="rekomendasi.html" style="margin-top:13px">Lihat Rekomendasi →</a></section>
+            <section class="panel-note"><strong>Catatan metodologi</strong><br>Nilai transportasi dan listrik dihitung berdasarkan data aktivitas serta faktor emisi yang digunakan pada sesi ini. Faktor emisi dapat berbeda menurut satuan, sumber, wilayah, dan periode.</section>
+          </aside>
+        </div>
+      </div>
+      <div class="toolbar" style="margin-top:18px"><a class="btn btn-secondary" href="riwayat.html">← Kembali ke Riwayat</a><a id="recommendationBottomLink" class="btn btn-primary" href="rekomendasi.html">Lihat Rekomendasi →</a></div>
+    </section>
+  </main>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
+<script src="../assets/js/config.js"></script><script src="../assets/js/supabase-client.js"></script><script src="../assets/js/common.js"></script><script src="../assets/js/data-service.js"></script><script src="../assets/js/hasil.js"></script>
+</body></html>
