@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="id"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Profile — CarbonSteps</title><link rel="stylesheet" href="../assets/css/styles.css"><link rel="stylesheet" href="../assets/css/all-pages.css"></head>
+<body><div class="app-shell"><aside class="sidebar">
+<a class="brand" href="../index.html"><div class="brand-mark">◈</div><div class="brand-name-wrap"><div class="brand-name">CarbonSteps</div><div class="brand-sub">STUDENT PORTAL</div></div></a>
+<div class="campus-status"><span>● STATUS AKUN</span><span class="status-pill">Aktif</span></div>
+<nav class="nav"><a class="nav-link " data-path="dashboard" href="dashboard.html"><span class="nav-icon">▦</span><span>Dashboard</span></a>
+<a class="nav-link active" data-path="profile" href="profile.html"><span class="nav-icon">◉</span><span>Profile</span></a>
+<a class="nav-link " data-path="kalkulator-transportasi" href="kalkulator-transportasi.html"><span class="nav-icon">▤</span><span>Kalkulator Transportasi</span></a>
+<a class="nav-link " data-path="kalkulator-listrik" href="kalkulator-listrik.html"><span class="nav-icon">ϟ</span><span>Kalkulator Listrik</span></a>
+<a class="nav-link " data-path="hasil-dan-riwayat" href="riwayat.html"><span class="nav-icon">◴</span><span>Hasil & Riwayat</span></a>
+<a class="nav-link " data-path="rekomendasi" href="rekomendasi.html"><span class="nav-icon">♧</span><span>Rekomendasi</span></a></nav>
+<div class="sidebar-foot"><div class="low-energy"><strong>♧ Green Software Design</strong>Antarmuka sederhana dan pemuatan data sesuai kebutuhan.</div></div>
+</aside>
+<main class="main"><header class="topbar"><div class="crumb">◈ CarbonSteps <span>›</span> <b>Profile Mahasiswa</b></div><div class="top-actions"><span class="data-badge">◉ Data aktivitas pribadi</span><div class="user-chip"><div class="user-meta"><b id="currentUserName">Mahasiswa</b><span>Mahasiswa</span></div><div class="user-avatar" id="currentUserAvatar">M</div></div><button class="icon-btn" data-logout title="Keluar">↪</button></div></header>
+<section class="page">
+<div class="page-heading"><div><div class="eyebrow">Informasi akun</div><h1 class="page-title">Profil Mahasiswa</h1><p class="page-subtitle">Kelola informasi dasar yang ditampilkan pada akun CarbonSteps.</p></div></div>
+<div id="pageAlert" class="alert" hidden></div>
+<div class="profile-layout">
+<aside class="grid">
+<section class="card profile-summary"><div class="profile-avatar" id="profileInitial">M</div><h2 id="profileDisplayName">Mahasiswa</h2><p id="profileDisplayNim">NIM belum diisi</p><div class="profile-stat"><span>Email akun</span><b id="profileEmail">—</b></div><div class="profile-stat"><span>Jumlah perhitungan</span><b id="profileCalculationCount">—</b></div><div class="profile-stat"><span>Preferensi tampilan</span><b id="profileThemeSummary">Dark</b></div></section>
+<section class="panel-note"><strong>Privasi data</strong><br>Profil dan riwayat perhitungan dikelola berdasarkan akun Supabase yang sedang masuk. NIM digunakan sebagai identitas akademik, bukan sebagai kata sandi.</section>
+</aside>
+<section class="card form-section"><div class="section-head"><h2 class="section-title">Informasi Pribadi dan Akademik</h2><span class="tag neutral">Data akun</span></div><p class="section-help">Isi data yang diperlukan. Email dikelola oleh Supabase Auth dan tidak diubah dari formulir profil ini.</p>
+<form id="profileForm" class="form-stack">
+<div class="form-grid">
+<div class="form-field"><label for="profileFullName">Nama Lengkap</label><input class="input" id="profileFullName" name="full_name" maxlength="120" required></div>
+<div class="form-field"><label for="profileNim">NIM</label><input class="input" id="profileNim" name="nim" inputmode="numeric" maxlength="10" pattern="[0-9]10" placeholder="10 digit angka" required><div class="hint">Sesuaikan dengan format NIM yang digunakan kampus.</div></div>
+<div class="form-field"><label for="profileStudyProgram">Program Studi</label><input class="input" id="profileStudyProgram" name="study_program" maxlength="120" placeholder="Contoh: Sistem Informasi"></div>
+<div class="form-field"><label for="profileFaculty">Fakultas</label><input class="input" id="profileFaculty" name="faculty" maxlength="120" placeholder="Nama fakultas"></div>
+<div class="form-field full"><label for="profileCampus">Perguruan Tinggi / Kampus</label><input class="input" id="profileCampus" name="campus" maxlength="160" placeholder="Nama perguruan tinggi"></div>
+<div class="form-field"><label for="profileEmailReadonly">Email Akun</label><input class="input" id="profileEmailReadonly" readonly disabled></div>
+<div class="form-field"><label for="profileTheme">Preferensi Tampilan</label><select class="select" id="profileTheme" name="theme_preference"><option value="dark">Dark mode</option><option value="light">Light mode</option></select></div>
+</div>
+<div class="form-actions"><button class="btn btn-primary" id="saveProfileButton" type="submit">Simpan Perubahan</button><button class="btn btn-secondary" id="resetProfileButton" type="button">Batalkan Perubahan</button></div>
+</form></section>
+</div>
+</section></main></div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="../assets/js/config.js"></script><script src="../assets/js/supabase-client.js"></script><script src="../assets/js/common.js"></script><script src="../assets/js/data-service.js"></script><script src="../assets/js/profile.js"></script></body></html>

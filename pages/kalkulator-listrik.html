@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="id"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Kalkulator Listrik — CarbonSteps</title><link rel="stylesheet" href="../assets/css/styles.css"><link rel="stylesheet" href="../assets/css/all-pages.css"></head>
+<body><div class="app-shell"><aside class="sidebar">
+<a class="brand" href="../index.html"><div class="brand-mark">◈</div><div class="brand-name-wrap"><div class="brand-name">CarbonSteps</div><div class="brand-sub">STUDENT PORTAL</div></div></a>
+<div class="campus-status"><span>● STATUS AKUN</span><span class="status-pill">Aktif</span></div>
+<nav class="nav"><a class="nav-link " data-path="dashboard" href="dashboard.html"><span class="nav-icon">▦</span><span>Dashboard</span></a>
+<a class="nav-link " data-path="profile" href="profile.html"><span class="nav-icon">◉</span><span>Profile</span></a>
+<a class="nav-link " data-path="kalkulator-transportasi" href="kalkulator-transportasi.html"><span class="nav-icon">▤</span><span>Kalkulator Transportasi</span></a>
+<a class="nav-link active" data-path="kalkulator-listrik" href="kalkulator-listrik.html"><span class="nav-icon">ϟ</span><span>Kalkulator Listrik</span></a>
+<a class="nav-link " data-path="hasil-dan-riwayat" href="riwayat.html"><span class="nav-icon">◴</span><span>Hasil & Riwayat</span></a>
+<a class="nav-link " data-path="rekomendasi" href="rekomendasi.html"><span class="nav-icon">♧</span><span>Rekomendasi</span></a></nav>
+<div class="sidebar-foot"><div class="low-energy"><strong>♧ Green Software Design</strong>Antarmuka sederhana dan pemuatan data sesuai kebutuhan.</div></div>
+</aside>
+<main class="main"><header class="topbar"><div class="crumb">◈ CarbonSteps <span>›</span> <b>Kalkulator Listrik</b></div><div class="top-actions"><span class="data-badge">◉ Data aktivitas pribadi</span><div class="user-chip"><div class="user-meta"><b id="currentUserName">Mahasiswa</b><span>Mahasiswa</span></div><div class="user-avatar" id="currentUserAvatar">M</div></div><button class="icon-btn" data-logout title="Keluar">↪</button></div></header>
+<section class="page">
+<div class="page-heading"><div><div class="eyebrow">Perhitungan konsumsi energi</div><h1 class="page-title">Kalkulator Listrik Perangkat</h1><p class="page-subtitle">Hitung konsumsi energi dan estimasi emisi dari perangkat elektronik yang digunakan untuk kegiatan kuliah maupun aktivitas sehari-hari.</p></div><div class="heading-side"><span class="notice-chip">Faktor listrik mengikuti wilayah dan periode</span></div></div>
+<div id="pageAlert" class="alert" hidden></div>
+<div id="calcStatus" class="status-box" hidden></div>
+<div class="form-layout">
+<div class="form-stack">
+<section class="card form-section"><div class="section-head"><h2 class="section-title">Periode Aktivitas</h2><span class="tag neutral">Baseline</span></div><p class="section-help">Gunakan periode yang sama dengan Kalkulator Transportasi pada satu sesi perhitungan.</p><div class="form-grid"><div class="form-field"><label for="electricityMonth">Bulan aktivitas</label><select id="electricityMonth" class="select"></select></div><div class="form-field"><label for="electricityYear">Tahun aktivitas</label><input id="electricityYear" class="input" type="number" min="2000" max="2200"></div></div></section>
+<section class="card form-section"><div class="section-head"><h2 class="section-title">Daftar Perangkat Elektronik</h2><button id="addDeviceRow" class="btn btn-secondary btn-sm" type="button">+ Tambah Perangkat</button></div><p class="section-help">Masukkan daya, lama penggunaan per hari, dan hari penggunaan dalam satu bulan untuk setiap perangkat.</p><div class="form-grid" style="margin-bottom:13px"><div class="form-field full"><label for="electricityFactorSelect">Faktor emisi listrik</label><select id="electricityFactorSelect" class="select" required><option value="">Memuat faktor emisi...</option></select><div class="hint" id="electricityFactorHint">Faktor akan diambil dari tabel emission_factors dan disesuaikan dengan periode aktivitas.</div></div></div><div id="electricityRows"></div></section>
+<div class="factor-box" id="electricityFactorInfo"><strong>Metode:</strong> kWh = (daya watt × jam penggunaan × hari pemakaian) / 1.000. Emisi = kWh × faktor emisi listrik.</div>
+<div class="form-actions"><button class="btn btn-primary" id="saveElectricityButton" type="button">Simpan Aktivitas Listrik →</button><button class="btn btn-secondary" id="resetElectricityButton" type="button">Reset Form</button></div>
+</div>
+<aside class="form-stack">
+<section class="card"><div class="eyebrow">Pratinjau perhitungan</div><h2 class="section-title">Total Emisi Listrik</h2><div class="preview-total"><div class="summary-label">Konsumsi energi</div><div class="metric" id="electricityPreviewEnergy">— <small>kWh</small></div><div class="summary-label" style="margin-top:12px">Estimasi emisi</div><div class="metric green" id="electricityPreviewEmission">—</div><div class="metric-note" id="electricityPreviewPeriod">Belum ada perangkat.</div></div><div id="electricityPreviewRows" class="preview-list"><div class="empty-state">Tambahkan perangkat untuk melihat pratinjau.</div></div></section>
+<section class="card"><h2 class="section-title">Metodologi Perhitungan</h2><div class="factor-box"><strong>kWh = (W × T × N) / 1.000</strong><br><strong>E = kWh × EF<sub>listrik</sub></strong></div><p class="metric-note" style="margin-top:10px">W = daya perangkat (watt), T = jam penggunaan per hari, N = hari pemakaian per bulan, dan EF = faktor emisi listrik (kg CO₂/kWh).</p></section>
+<section class="panel-note"><strong>Catatan faktor emisi</strong><br>Pastikan faktor emisi listrik yang aktif sesuai wilayah jaringan dan periode data. Angka pada pratinjau merupakan estimasi, bukan pembacaan meter listrik langsung.</section>
+</aside>
+</div>
+</section></main></div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="../assets/js/config.js"></script><script src="../assets/js/supabase-client.js"></script><script src="../assets/js/common.js"></script><script src="../assets/js/calculator-workflow.js"></script><script src="../assets/js/electricity-calculator.js"></script></body></html>

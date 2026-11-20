@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="id"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Rekomendasi — CarbonSteps</title><link rel="stylesheet" href="../assets/css/styles.css"></head>
+<body><div class="app-shell">
+  <aside class="sidebar">
+    <a class="brand" href="../index.html"><div class="brand-mark">◈</div><div class="brand-name-wrap"><div class="brand-name">CarbonSteps</div><div class="brand-sub">STUDENT PORTAL</div></div></a>
+    <div class="campus-status"><span>● STATUS AKUN</span><span class="status-pill">Aktif</span></div>
+    <nav class="nav">
+      <a class="nav-link" data-path="dashboard" href="dashboard.html"><span class="nav-icon">▦</span><span>Dashboard</span></a>
+      <a class="nav-link" data-path="profile" href="profile.html"><span class="nav-icon">◉</span><span>Profile</span></a>
+      <a class="nav-link" data-path="kalkulator-transportasi" href="kalkulator-transportasi.html"><span class="nav-icon">▤</span><span>Kalkulator Transportasi</span></a>
+      <a class="nav-link" data-path="kalkulator-listrik" href="kalkulator-listrik.html"><span class="nav-icon">ϟ</span><span>Kalkulator Listrik</span></a>
+      <a class="nav-link" data-path="hasil-dan-riwayat" href="riwayat.html"><span class="nav-icon">◴</span><span>Hasil &amp; Riwayat</span></a>
+      <a class="nav-link active" data-path="rekomendasi" href="rekomendasi.html"><span class="nav-icon">♧</span><span>Rekomendasi</span></a>
+    </nav>
+    <div class="sidebar-foot"><div class="low-energy"><strong>♧ Low Energy Design</strong>Antarmuka sederhana dan pemuatan data sesuai kebutuhan.</div></div>
+  </aside>
+  <main class="main">
+    <header class="topbar"><div class="crumb">♧ Analisis emisi <span>›</span> <b>Rekomendasi</b></div><div class="top-actions"><span class="data-badge">◉ Rekomendasi berbasis aturan</span><div class="user-chip"><div class="user-meta"><b id="currentUserName">Mahasiswa</b><span>Mahasiswa</span></div><div class="user-avatar" id="currentUserAvatar">M</div></div><button class="icon-btn" data-logout title="Keluar">↪</button></div></header>
+    <section class="page">
+      <div class="page-heading"><div><div class="eyebrow">Analisis berbasis aturan · Data perhitungan tersimpan</div><h1 class="page-title">Rekomendasi Pengurangan Emisi</h1><p class="page-subtitle">Temukan langkah sederhana dan realistis untuk mempertimbangkan perubahan kebiasaan berdasarkan hasil estimasi emisi.</p></div><div class="heading-side"><div class="period-chip">Berdasarkan perhitungan: <b id="recommendationPeriod">—</b></div><span class="tag blue">Bukan rekomendasi AI</span></div></div>
+      <div id="pageAlert" class="alert" hidden></div>
+      <div id="emptyState" class="card empty-state" hidden><div class="empty-icon">♧</div><h2>Belum ada data untuk menyusun rekomendasi</h2><p>Simpan aktivitas transportasi dan penggunaan listrik dalam satu sesi perhitungan lengkap terlebih dahulu.</p><div class="toolbar" style="justify-content:center"><a class="btn btn-secondary" data-path="kalkulator-transportasi" href="kalkulator-transportasi.html">Kalkulator Transportasi</a><a class="btn btn-primary" data-path="kalkulator-listrik" href="kalkulator-listrik.html">Kalkulator Listrik</a></div></div>
+      <div id="recommendationContent" hidden>
+        <section class="card recommendation-hero">
+          <div><div class="eyebrow">Kategori penyumbang emisi terbesar</div><h2 class="section-title" style="font-size:22px;margin-bottom:5px" id="dominantTitle">—</h2><p class="metric-note" id="dominantDescription">—</p><div class="category-bar"><span class="transport" id="transportBar" style="width:50%"></span><span class="electricity" id="electricityBar" style="width:50%"></span></div><div class="toolbar" style="justify-content:space-between"><span class="small">Transportasi: <b id="transportShare">—</b></span><span class="small">Listrik: <b id="electricityShare">—</b></span></div></div>
+          <div class="hero-total"><div class="summary-label" style="justify-content:center">Total estimasi emisi</div><div class="metric" id="totalEmission">—</div><div class="metric-note" id="calculationLabel">—</div></div>
+        </section>
+        <div class="reason-box" id="ruleExplanation">Rekomendasi dipilih berdasarkan perbandingan emisi transportasi dan listrik pada perhitungan yang dipilih. Sistem menggunakan aturan sederhana, bukan kecerdasan buatan.</div>
+        <div class="recommendation-grid">
+          <section class="card recommendation-card"><div class="section-head"><h2 class="section-title"><span class="dot blue"></span>Langkah Transportasi</h2><span class="tag blue">Mobilitas</span></div><div id="transportRecommendations"></div></section>
+          <section class="card recommendation-card"><div class="section-head"><h2 class="section-title"><span class="dot green"></span>Efisiensi Penggunaan Listrik</h2><span class="tag">Energi</span></div><div id="electricityRecommendations"></div></section>
+        </div>
+        <section class="card recommendation-card" id="generalRecommendationSection" style="margin-top:17px" hidden><div class="section-head"><h2 class="section-title">Saran Umum</h2><span class="tag neutral">Berlaku untuk semua kategori</span></div><div id="generalRecommendations"></div></section>
+        <section class="card" style="margin-top:17px"><div class="section-head"><h2 class="section-title">Langkah Selanjutnya</h2><span class="tag neutral">Pilihan pengguna</span></div><p class="metric-note">Kamu dapat mempertimbangkan saran di atas dan mengubah kebiasaan secara bertahap. Dampak perubahan baru dapat dinilai setelah aktivitas benar-benar berubah dan dihitung kembali.</p><div class="toolbar"><a id="backToResult" class="btn btn-secondary" href="hasil.html">Lihat Hasil Perhitungan</a><a class="btn btn-primary" data-path="hasil-dan-riwayat" href="riwayat.html">Lihat Riwayat →</a></div></section>
+      </div>
+      <p class="small" style="margin-top:18px">Rekomendasi merupakan saran umum berbasis kategori emisi. CarbonSteps tidak menjamin nilai pengurangan emisi tertentu.</p>
+    </section>
+  </main>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="../assets/js/config.js"></script><script src="../assets/js/supabase-client.js"></script><script src="../assets/js/common.js"></script><script src="../assets/js/data-service.js"></script><script src="../assets/js/rekomendasi.js"></script>
+</body></html>

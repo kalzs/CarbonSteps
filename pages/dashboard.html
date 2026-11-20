@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="id"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Dashboard — CarbonSteps</title><link rel="stylesheet" href="../assets/css/styles.css"><link rel="stylesheet" href="../assets/css/all-pages.css"></head>
+<body><div class="app-shell"><aside class="sidebar">
+<a class="brand" href="../index.html"><div class="brand-mark">◈</div><div class="brand-name-wrap"><div class="brand-name">CarbonSteps</div><div class="brand-sub">STUDENT PORTAL</div></div></a>
+<div class="campus-status"><span>● STATUS AKUN</span><span class="status-pill">Aktif</span></div>
+<nav class="nav"><a class="nav-link active" data-path="dashboard" href="dashboard.html"><span class="nav-icon">▦</span><span>Dashboard</span></a>
+<a class="nav-link " data-path="profile" href="profile.html"><span class="nav-icon">◉</span><span>Profile</span></a>
+<a class="nav-link " data-path="kalkulator-transportasi" href="kalkulator-transportasi.html"><span class="nav-icon">▤</span><span>Kalkulator Transportasi</span></a>
+<a class="nav-link " data-path="kalkulator-listrik" href="kalkulator-listrik.html"><span class="nav-icon">ϟ</span><span>Kalkulator Listrik</span></a>
+<a class="nav-link " data-path="hasil-dan-riwayat" href="riwayat.html"><span class="nav-icon">◴</span><span>Hasil & Riwayat</span></a>
+<a class="nav-link " data-path="rekomendasi" href="rekomendasi.html"><span class="nav-icon">♧</span><span>Rekomendasi</span></a></nav>
+<div class="sidebar-foot"><div class="low-energy"><strong>♧ Green Software Design</strong>Antarmuka sederhana dan pemuatan data sesuai kebutuhan.</div></div>
+</aside>
+<main class="main"><header class="topbar"><div class="crumb">◈ CarbonSteps <span>›</span> <b>Dashboard</b></div><div class="top-actions"><span class="data-badge">◉ Data aktivitas pribadi</span><div class="user-chip"><div class="user-meta"><b id="currentUserName">Mahasiswa</b><span>Mahasiswa</span></div><div class="user-avatar" id="currentUserAvatar">M</div></div><button class="icon-btn" data-logout title="Keluar">↪</button></div></header>
+<section class="page">
+<div class="page-heading"><div><div class="eyebrow">Ringkasan jejak karbon pribadi</div><h1 class="page-title" id="dashboardGreeting">Selamat datang di CarbonSteps</h1><p class="page-subtitle">Pantau estimasi emisi dari perjalanan menuju kampus dan penggunaan listrik perangkat elektronik.</p></div><div class="heading-side"><div class="period-chip">Periode terbaru: <b id="dashboardPeriod">—</b></div><a class="btn btn-primary" data-path="kalkulator-transportasi" href="kalkulator-transportasi.html">+ Hitung Aktivitas</a></div></div>
+<div id="pageAlert" class="alert" hidden></div>
+<div class="summary-grid">
+<article class="card summary-card"><div class="summary-label"><span class="dot green"></span>Total Estimasi Emisi</div><div class="metric" id="dashTotal">—</div><div class="metric-note" id="dashTrendCaption">Menunggu data perhitungan tersimpan.</div></article>
+<article class="card summary-card"><div class="summary-label"><span class="dot blue"></span>Emisi Transportasi</div><div class="metric blue" id="dashTransport">—</div><div class="metric-note" id="dashTransportShare">Proporsi dari total emisi</div></article>
+<article class="card summary-card"><div class="summary-label"><span class="dot green"></span>Emisi Penggunaan Listrik</div><div class="metric green" id="dashElectricity">—</div><div class="metric-note" id="dashElectricityShare">Proporsi dari total emisi</div></article>
+</div>
+<div class="dash-feature-grid">
+<div class="grid">
+<section class="card chart-card"><div class="section-head"><h2 class="section-title">Komposisi dan Tren Emisi</h2><span class="tag neutral">Baseline terbaru per bulan</span></div><p class="metric-note" style="margin:0 0 12px">Grafik tren tidak mencampurkan skenario alternatif dengan kondisi awal.</p><div class="chart-box"><canvas id="dashboardTrendChart" aria-label="Grafik tren emisi bulanan"></canvas></div><div class="chart-legend"><div class="legend-item"><span class="legend-dot" style="background:#82cce5"></span><span>Transportasi</span><b id="dashLegendTransport">—</b></div><div class="legend-item"><span class="legend-dot" style="background:#9bd59c"></span><span>Penggunaan listrik</span><b id="dashLegendElectricity">—</b></div></div></section>
+<section class="card"><div class="section-head"><h2 class="section-title">Riwayat Terbaru</h2><a class="table-action" data-path="hasil-dan-riwayat" href="riwayat.html">Lihat semua →</a></div><div id="dashboardRecent" class="dash-recent"><div class="empty-state">Memuat data...</div></div></section>
+</div>
+<aside class="grid">
+<section class="card"><div class="eyebrow">Kategori dominan</div><h2 class="section-title" id="dashDominantTitle">Belum ada data</h2><p class="metric-note" id="dashDominantText">Simpan perhitungan untuk mengetahui kategori dengan estimasi emisi terbesar.</p><a class="btn btn-primary btn-block" id="dashRecommendationLink" data-path="rekomendasi" href="rekomendasi.html">Lihat Rekomendasi →</a></section>
+<section class="card"><div class="section-head"><h2 class="section-title">Perbarui Data Aktivitas</h2><span class="tag neutral">Kalkulator</span></div><a class="quick-link" data-path="kalkulator-transportasi" href="kalkulator-transportasi.html"><div><b>Kalkulator Transportasi</b><span>Masukkan moda, jarak PP, dan frekuensi perjalanan.</span></div><strong>→</strong></a><a class="quick-link" data-path="kalkulator-listrik" href="kalkulator-listrik.html" style="margin-top:9px"><div><b>Kalkulator Listrik</b><span>Masukkan daya dan lama penggunaan perangkat.</span></div><strong>→</strong></a></section>
+<section class="panel-note"><strong>Catatan estimasi</strong><br>CarbonSteps menghitung perkiraan emisi berdasarkan data aktivitas dan faktor emisi yang dipilih. Hasil bukan pengukuran emisi langsung.</section>
+</aside>
+</div>
+</section></main></div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="../assets/js/config.js"></script><script src="../assets/js/supabase-client.js"></script><script src="../assets/js/common.js"></script><script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script><script src="../assets/js/data-service.js"></script><script src="../assets/js/dashboard.js"></script></body></html>

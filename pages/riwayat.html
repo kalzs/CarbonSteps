@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="id"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Riwayat Perhitungan — CarbonSteps</title><link rel="stylesheet" href="../assets/css/styles.css"></head>
+<body><div class="app-shell">
+  <aside class="sidebar">
+    <a class="brand" href="../index.html"><div class="brand-mark">◈</div><div class="brand-name-wrap"><div class="brand-name">CarbonSteps</div><div class="brand-sub">STUDENT PORTAL</div></div></a>
+    <div class="campus-status"><span>● STATUS AKUN</span><span class="status-pill">Aktif</span></div>
+    <nav class="nav">
+      <a class="nav-link" data-path="dashboard" href="dashboard.html"><span class="nav-icon">▦</span><span>Dashboard</span></a>
+      <a class="nav-link" data-path="profile" href="profile.html"><span class="nav-icon">◉</span><span>Profile</span></a>
+      <a class="nav-link" data-path="kalkulator-transportasi" href="kalkulator-transportasi.html"><span class="nav-icon">▤</span><span>Kalkulator Transportasi</span></a>
+      <a class="nav-link" data-path="kalkulator-listrik" href="kalkulator-listrik.html"><span class="nav-icon">ϟ</span><span>Kalkulator Listrik</span></a>
+      <a class="nav-link active" data-path="hasil-dan-riwayat" href="riwayat.html"><span class="nav-icon">◴</span><span>Hasil &amp; Riwayat</span></a>
+      <a class="nav-link" data-path="rekomendasi" href="rekomendasi.html"><span class="nav-icon">♧</span><span>Rekomendasi</span></a>
+    </nav>
+    <div class="sidebar-foot"><div class="low-energy"><strong>♧ Low Energy Design</strong>Antarmuka sederhana dan pemuatan data sesuai kebutuhan.</div></div>
+  </aside>
+  <main class="main">
+    <header class="topbar"><div class="crumb">◈ Akademik <span>›</span> <b>Hasil &amp; Riwayat</b></div><div class="top-actions"><span class="data-badge">◉ Data aktivitas pribadi</span><div class="user-chip"><div class="user-meta"><b id="currentUserName">Mahasiswa</b><span>Mahasiswa</span></div><div class="user-avatar" id="currentUserAvatar">M</div></div><button class="icon-btn" data-logout title="Keluar">↪</button></div></header>
+    <section class="page">
+      <div class="page-heading"><div><div class="eyebrow">Catatan pribadi · Estimasi CO₂</div><h1 class="page-title">Riwayat Perhitungan Jejak Karbon</h1><p class="page-subtitle">Lihat kembali hasil estimasi transportasi dan penggunaan listrik dari perhitungan yang telah kamu simpan.</p></div><div class="heading-side"><a class="btn btn-primary" href="hasil.html">Lihat Hasil Terbaru ↗</a><div class="period-chip">Semua data milik akun yang sedang masuk</div></div></div>
+      <div id="pageAlert" class="alert" hidden></div>
+      <div class="summary-grid four">
+        <article class="card summary-card"><div class="summary-label"><span class="dot green"></span>Total Perhitungan</div><div class="metric" id="totalCalculations">—</div><div class="metric-note">Semua sesi tersimpan</div></article>
+        <article class="card summary-card"><div class="summary-label"><span class="dot blue"></span>Rata-rata Baseline</div><div class="metric" id="averageEmission">— <small>kg CO₂</small></div><div class="metric-note">Rata-rata kondisi awal</div></article>
+        <article class="card summary-card"><div class="summary-label"><span class="dot green"></span>Tren Baseline</div><div class="metric green" id="emissionTrend">—</div><div class="metric-note" id="trendCaption">Perbandingan dua periode baseline terakhir</div></article>
+        <article class="card summary-card"><div class="summary-label"><span class="dot gold"></span>Baseline Terendah</div><div class="metric green" id="lowestEmission">— <small>kg CO₂</small></div><div class="metric-note" id="lowestDate">Dari data baseline tersimpan</div></article>
+      </div>
+      <div class="history-layout">
+        <div class="grid">
+          <section class="card">
+            <div class="section-head"><h2 class="section-title"><span class="section-icon">☷</span>Daftar Perhitungan</h2><span class="tag neutral" id="historyCountLabel">Memuat...</span></div>
+            <div class="toolbar" style="margin-bottom:13px">
+              <input id="historySearch" class="input search-input" type="search" placeholder="Cari nama skenario atau periode..." aria-label="Cari riwayat">
+              <select id="periodFilter" class="select filter-select" aria-label="Filter jenis perhitungan"><option value="all">Semua jenis</option><option value="baseline">Baseline</option><option value="scenario">Skenario</option></select>
+              <select id="yearFilter" class="select filter-select" aria-label="Filter tahun"><option value="all">Semua tahun</option></select>
+              <button id="exportCsv" class="btn btn-secondary btn-sm">⇩ Ekspor CSV</button>
+            </div>
+            <div class="table-wrap"><table class="table"><thead><tr><th>Tanggal</th><th>Periode</th><th>Jenis</th><th>Transportasi</th><th>Listrik</th><th>Total</th><th></th></tr></thead><tbody id="historyTableBody"><tr><td colspan="7">Memuat riwayat...</td></tr></tbody></table></div>
+            <div class="pagination"><span id="paginationInfo">—</span><div class="pagination-controls"><button class="page-number" id="previousPage">‹</button><span class="page-number active" id="pageNumber">1</span><button class="page-number" id="nextPage">›</button></div></div>
+          </section>
+          <section class="card"><div class="section-head"><h2 class="section-title"><span class="section-icon">⌁</span>Tren Emisi Baseline</h2><span class="tag neutral">Per periode</span></div><p class="metric-note" style="margin:0 0 12px">Grafik menggunakan satu hasil baseline terbaru untuk setiap bulan. Skenario alternatif tidak dicampur sebagai kondisi aktual.</p><div class="chart-box"><canvas id="historyTrendChart" aria-label="Grafik tren emisi baseline"></canvas></div></section>
+        </div>
+        <aside class="grid">
+          <section class="card"><div class="section-head"><h2 class="section-title">Detail Perhitungan</h2><span class="tag green" id="detailType">Pilih baris</span></div><div id="selectedCalculationDetail"><div class="empty-state"><div class="empty-icon">◷</div><strong>Pilih salah satu riwayat</strong><p class="small">Rincian perhitungan akan tampil di sini.</p></div></div></section>
+          <div class="panel-note"><strong>Catatan penggunaan data</strong><br>Setiap baris mewakili satu sesi perhitungan yang disimpan. Beberapa perhitungan dalam bulan yang sama tetap ditampilkan terpisah.</div>
+        </aside>
+      </div>
+      <p class="small" style="margin-top:18px">Hasil merupakan estimasi berdasarkan data aktivitas dan faktor emisi yang digunakan pada saat perhitungan.</p>
+    </section>
+  </main>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
+<script src="../assets/js/config.js"></script><script src="../assets/js/supabase-client.js"></script><script src="../assets/js/common.js"></script><script src="../assets/js/data-service.js"></script><script src="../assets/js/riwayat.js"></script>
+</body></html>

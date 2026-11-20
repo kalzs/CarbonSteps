@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="id"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Kalkulator Transportasi — CarbonSteps</title><link rel="stylesheet" href="../assets/css/styles.css"><link rel="stylesheet" href="../assets/css/all-pages.css"></head>
+<body><div class="app-shell"><aside class="sidebar">
+<a class="brand" href="../index.html"><div class="brand-mark">◈</div><div class="brand-name-wrap"><div class="brand-name">CarbonSteps</div><div class="brand-sub">STUDENT PORTAL</div></div></a>
+<div class="campus-status"><span>● STATUS AKUN</span><span class="status-pill">Aktif</span></div>
+<nav class="nav"><a class="nav-link " data-path="dashboard" href="dashboard.html"><span class="nav-icon">▦</span><span>Dashboard</span></a>
+<a class="nav-link " data-path="profile" href="profile.html"><span class="nav-icon">◉</span><span>Profile</span></a>
+<a class="nav-link active" data-path="kalkulator-transportasi" href="kalkulator-transportasi.html"><span class="nav-icon">▤</span><span>Kalkulator Transportasi</span></a>
+<a class="nav-link " data-path="kalkulator-listrik" href="kalkulator-listrik.html"><span class="nav-icon">ϟ</span><span>Kalkulator Listrik</span></a>
+<a class="nav-link " data-path="hasil-dan-riwayat" href="riwayat.html"><span class="nav-icon">◴</span><span>Hasil & Riwayat</span></a>
+<a class="nav-link " data-path="rekomendasi" href="rekomendasi.html"><span class="nav-icon">♧</span><span>Rekomendasi</span></a></nav>
+<div class="sidebar-foot"><div class="low-energy"><strong>♧ Green Software Design</strong>Antarmuka sederhana dan pemuatan data sesuai kebutuhan.</div></div>
+</aside>
+<main class="main"><header class="topbar"><div class="crumb">◈ CarbonSteps <span>›</span> <b>Kalkulator Transportasi</b></div><div class="top-actions"><span class="data-badge">◉ Data aktivitas pribadi</span><div class="user-chip"><div class="user-meta"><b id="currentUserName">Mahasiswa</b><span>Mahasiswa</span></div><div class="user-avatar" id="currentUserAvatar">M</div></div><button class="icon-btn" data-logout title="Keluar">↪</button></div></header>
+<section class="page">
+<div class="page-heading"><div><div class="eyebrow">Perhitungan berbasis aktivitas</div><h1 class="page-title">Kalkulator Transportasi</h1><p class="page-subtitle">Hitung estimasi emisi CO₂ dari perjalanan menuju kampus. Kamu dapat menambahkan lebih dari satu moda dalam satu sesi perhitungan.</p></div><div class="heading-side"><span class="notice-chip">Jarak yang dimasukkan adalah pulang-pergi (PP)</span></div></div>
+<div id="pageAlert" class="alert" hidden></div>
+<div id="calcStatus" class="status-box" hidden></div>
+<div class="form-layout">
+<div class="form-stack">
+<section class="card form-section"><div class="section-head"><h2 class="section-title">Periode Aktivitas</h2><span class="tag neutral">Baseline</span></div><p class="section-help">Gunakan periode yang sama pada Kalkulator Listrik agar keduanya tersimpan sebagai satu hasil lengkap.</p><div class="form-grid"><div class="form-field"><label for="transportMonth">Bulan aktivitas</label><select id="transportMonth" class="select"></select></div><div class="form-field"><label for="transportYear">Tahun aktivitas</label><input id="transportYear" class="input" type="number" min="2000" max="2200"></div></div></section>
+<section class="card form-section"><div class="section-head"><h2 class="section-title">Aktivitas Perjalanan</h2><button id="addTransportRow" class="btn btn-secondary btn-sm" type="button">+ Tambah Moda</button></div><p class="section-help">Setiap moda disimpan sebagai satu catatan aktivitas. Jarak PP tidak dikalikan dua lagi.</p><div id="transportRows"></div></section>
+<div class="factor-box" id="transportFactorInfo"><strong>Faktor emisi:</strong> memuat faktor transportasi yang aktif dan berlaku untuk periode yang dipilih dari database.</div>
+<div class="form-actions"><button class="btn btn-primary" id="saveTransportButton" type="button">Simpan Aktivitas Transportasi →</button><button class="btn btn-secondary" id="resetTransportButton" type="button">Reset Form</button></div>
+</div>
+<aside class="form-stack">
+<section class="card"><div class="eyebrow">Pratinjau perhitungan</div><h2 class="section-title">Estimasi Emisi Transportasi</h2><div class="preview-total"><div class="summary-label">Total sementara</div><div class="metric blue" id="transportPreviewTotal">—</div><div class="metric-note" id="transportPreviewPeriod">Belum ada data input.</div></div><div id="transportPreviewRows" class="preview-list"><div class="empty-state">Tambahkan aktivitas perjalanan untuk melihat pratinjau.</div></div></section>
+<section class="card"><h2 class="section-title">Metodologi Perhitungan</h2><p class="metric-note">Jika faktor emisi berbasis penumpang-km:</p><div class="factor-box"><strong>E = D<sub>PP</sub> × N × EF</strong></div><p class="metric-note" style="margin-top:10px">Jika faktor emisi berbasis kendaraan-km dan dibagi menurut jumlah penumpang:</p><div class="factor-box"><strong>E = (D<sub>PP</sub> × N × EF) / P</strong></div><p class="metric-note" style="margin-top:10px">D = jarak PP per hari, N = hari perjalanan per bulan, EF = faktor emisi, P = jumlah penumpang bila diperlukan.</p></section>
+<section class="panel-note"><strong>Alur penyimpanan</strong><br>Aktivitas ini disimpan sebagai draft terlebih dahulu. Setelah Kalkulator Listrik juga disimpan pada sesi yang sama, sistem akan menyelesaikan perhitungan dan menampilkannya di Hasil serta Riwayat.</section>
+</aside>
+</div>
+</section></main></div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="../assets/js/config.js"></script><script src="../assets/js/supabase-client.js"></script><script src="../assets/js/common.js"></script><script src="../assets/js/calculator-workflow.js"></script><script src="../assets/js/transport-calculator.js"></script></body></html>

@@ -1,0 +1,115 @@
+erDiagram
+    AUTH_USERS ||--|| PROFILES : has
+    AUTH_USERS ||--o{ CARBON_CALCULATIONS : owns
+    CARBON_CALCULATIONS ||--o{ TRANSPORT_LOGS : contains
+    CARBON_CALCULATIONS ||--o{ ELECTRICITY_LOGS : contains
+    TRANSPORT_MODES ||--o{ EMISSION_FACTORS : has_factors
+    EMISSION_FACTORS ||--o{ TRANSPORT_LOGS : applied_to
+    EMISSION_FACTORS ||--o{ ELECTRICITY_LOGS : applied_to
+    DEVICE_TYPES ||--o{ ELECTRICITY_LOGS : describes
+    CARBON_CALCULATIONS ||--o{ CALCULATION_RECOMMENDATIONS : receives
+    RECOMMENDATIONS ||--o{ CALCULATION_RECOMMENDATIONS : selected_for
+    CARBON_CALCULATIONS o|--o{ CARBON_CALCULATIONS : baseline_for_scenarios
+
+    AUTH_USERS {
+        uuid id PK "Supabase Auth managed"
+    }
+    PROFILES {
+        uuid id PK "PK and FK to auth.users.id"
+        text full_name
+        text nim UK
+        text study_program
+        text faculty
+        text campus
+        text avatar_path
+        text theme_preference
+        timestamptz created_at
+        timestamptz updated_at
+    }
+    TRANSPORT_MODES {
+        uuid id PK
+        text name UK
+        text mode_group
+        text fuel_type
+        boolean is_active
+    }
+    DEVICE_TYPES {
+        uuid id PK
+        text name UK
+        text device_category
+        numeric default_power_watt
+        boolean is_active
+    }
+    EMISSION_FACTORS {
+        uuid id PK
+        text code UK
+        text name
+        text category
+        uuid transport_mode_id FK
+        text unit
+        text factor_basis
+        numeric factor_value
+        text region
+        text source_name
+        text source_url
+        smallint source_year
+        date effective_from
+        date effective_to
+        boolean is_active
+    }
+    CARBON_CALCULATIONS {
+        uuid id PK
+        uuid user_id FK
+        smallint period_year
+        smallint period_month
+        text calculation_type
+        uuid parent_calculation_id FK
+        text scenario_name
+        numeric transport_emission_kg_co2e
+        numeric electricity_emission_kg_co2e
+        numeric total_emission_kg_co2e "generated"
+        text dominant_category "generated"
+        timestamptz calculated_at
+    }
+    TRANSPORT_LOGS {
+        uuid id PK
+        uuid calculation_id FK
+        uuid emission_factor_id FK
+        numeric round_trip_distance_km
+        smallint travel_days_per_month
+        smallint passenger_count
+        text factor_basis_used
+        numeric factor_value_used
+        text factor_unit_used
+        numeric emission_kg_co2e "generated"
+        text notes
+    }
+    ELECTRICITY_LOGS {
+        uuid id PK
+        uuid calculation_id FK
+        uuid device_type_id FK
+        text custom_device_name
+        uuid emission_factor_id FK
+        numeric power_watt
+        numeric hours_per_day
+        smallint days_per_month
+        numeric energy_kwh "generated"
+        numeric factor_value_used
+        numeric emission_kg_co2e "generated"
+        text notes
+    }
+    RECOMMENDATIONS {
+        uuid id PK
+        text code UK
+        text category
+        text title
+        text advice
+        smallint priority
+        boolean is_active
+    }
+    CALCULATION_RECOMMENDATIONS {
+        uuid calculation_id PK,FK
+        uuid recommendation_id PK,FK
+        text reason_category
+        timestamptz created_at
+    }

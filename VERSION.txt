@@ -1,0 +1,3 @@
+CarbonSteps Final Integrated v7
+Base: v6
+Update: deduplicate repeated active transport emission-factor options; add database cleanup migration 17.
